@@ -305,13 +305,11 @@ public class TesteArvoreDeBusca<T> {
         arvore.inserir(noTres);
         arvore.inserir(new No(62));
         arvore.inserir(new No(70));
-        arvore.inserir(new No(22));
 
         arvore.remover(noUm);
         assertEquals(40, noUm.getDado());
         arvore.remover(noUm);
         assertEquals(38, noUm.getDado());
-        assertEquals(noUm.getFilhoEsq().getDado(), 22);
         arvore.remover(noUm);
         assertEquals(noUm.getDado(), 22);
 

@@ -98,11 +98,9 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
             //Verifica se o no como um filho a ser removido é a raiz.
             if (raiz == noEncontrado){
                 if (filhoEsq != null){
-                    raiz.setDado(filhoEsq.getDado());
-                    raiz.setFilhoEsq(null);
+                    raiz = filhoEsq;
                 }else{
-                    raiz.setDado(filhoDir.getDado());
-                    raiz.setFilhoDir(null);
+                    raiz = filhoDir;
                 }
             }else {
                 if (filhoEsq != null){
