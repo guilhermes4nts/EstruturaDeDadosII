@@ -232,10 +232,8 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
 //    Esse metodo imprimi os valores da arvore seguindo a Pre Ordem
     @Override
     public void preOrdem(No raiz) throws ArvoreVazia {
-        if(raiz == null) {
-            throw new ArvoreVazia();
-        }else {
-            System.out.println(raiz.getDado() + " ");
+        if(raiz != null) {
+            System.out.print(raiz.getDado() + " | ");
             preOrdem(raiz.getFilhoEsq());
             preOrdem(raiz.getFilhoDir());
         }
@@ -243,24 +241,20 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
 
 //    Esse metodo imprimi os valores da arvore seguindo a Ordem Simetrica
     @Override
-    public void inOrdem(No no) throws ArvoreVazia {
-        if(raiz == null) {
-            throw new ArvoreVazia();
-        }else {
-            preOrdem(raiz.getFilhoEsq());
-            preOrdem(raiz.getFilhoDir());
-            System.out.println(raiz.getDado() + " ");
+    public void inOrdem(No raiz) throws ArvoreVazia {
+        if(raiz != null) {
+            inOrdem(raiz.getFilhoEsq());
+            System.out.print(raiz.getDado() + " | ");
+            inOrdem(raiz.getFilhoDir());
         }
     }
 //    Esse metodo imprimi os valores da arvore seguindo a Pos Ordem
     @Override
-    public void posOrdem(No no) throws ArvoreVazia {
-        if(raiz == null) {
-            throw new ArvoreVazia();
-        }else {
-            preOrdem(raiz.getFilhoEsq());
-            System.out.println(raiz.getDado() + " ");
-            preOrdem(raiz.getFilhoDir());
+    public void posOrdem(No raiz) throws ArvoreVazia {
+        if (raiz != null){
+            posOrdem(raiz.getFilhoEsq());
+            posOrdem(raiz.getFilhoDir());
+            System.out.print(raiz.getDado() + " | ");
         }
     }
 
