@@ -1,5 +1,10 @@
 package ArvoreBinariaDeBusca;
 
+import org.junit.Test;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
     // Criação da raiz.
     No raiz;
@@ -180,7 +185,7 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
         }
     }
 
-    // Metodo auxiliar do metodo visitar()
+    // Metodo auxiliar Recursssivo do metodo visitar()
     private No visitarRec(No atual, No no){
         // Aqui é feito uma comparação do No atual(que inicialmente é a raiz) com o no a ser visitado.
         // Se o no for null ou for igual a atual ele é retornado.
@@ -195,11 +200,13 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
         }
     }
 
+    // Método que verifica se a arvore esta vazia ou não, e retorna true ou false
     @Override
     public boolean estaVazia() {
         return raiz == null;
     }
 
+    //Método que verifica se uma arvore é completa atravé de uma formula matemática
     @Override
     public boolean ehCompleta(){
         return (quantidadeFolhas == (Math.pow(2, altura() +1) - 1));
@@ -211,6 +218,7 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
         return calcularAltura(raiz);
     }
 
+    // Método Recurssivo e auxiliar de altura()
     private int calcularAltura(No raiz){
         if (raiz == null) {
             return -1; // A altura de uma árvore vazia é -1.
@@ -223,42 +231,79 @@ public class ArvoreBinariaBusca<T> implements IArvoreBinaria {
         }
     }
 
-//    Imprimi os valores da arvore a partir do metodo preOrdem()
+    // Imprimi os valores da arvore a partir do metodo preOrdem()
     @Override
     public void imprimirArvore() throws ArvoreVazia {
         preOrdem(raiz);
     }
 
-//    Esse metodo imprimi os valores da arvore seguindo a Pre Ordem
+    // Esse metodo imprimi os valores da arvore seguindo a Pre Ordem
     @Override
     public void preOrdem(No raiz) throws ArvoreVazia {
+        if(estaVazia()) {
+            throw new ArvoreVazia();
+        }
         if(raiz != null) {
-            System.out.print(raiz.getDado() + " | ");
+            System.out.print(raiz.getDado() + " ");
             preOrdem(raiz.getFilhoEsq());
             preOrdem(raiz.getFilhoDir());
         }
     }
 
-//    Esse metodo imprimi os valores da arvore seguindo a Ordem Simetrica
+    // Esse metodo imprimi os valores da arvore seguindo a Ordem Simetrica
     @Override
     public void inOrdem(No raiz) throws ArvoreVazia {
+        if(estaVazia()){
+            throw new ArvoreVazia();
+        }
         if(raiz != null) {
             inOrdem(raiz.getFilhoEsq());
-            System.out.print(raiz.getDado() + " | ");
+            System.out.print(raiz.getDado() + " ");
             inOrdem(raiz.getFilhoDir());
         }
+
     }
-//    Esse metodo imprimi os valores da arvore seguindo a Pos Ordem
+    // Esse metodo imprimi os valores da arvore seguindo a Pos Ordem
     @Override
     public void posOrdem(No raiz) throws ArvoreVazia {
+        if(estaVazia()) {
+            throw new ArvoreVazia();
+        }
         if (raiz != null){
             posOrdem(raiz.getFilhoEsq());
             posOrdem(raiz.getFilhoDir());
-            System.out.print(raiz.getDado() + " | ");
+            System.out.print(raiz.getDado() + " ");
         }
+
     }
 
-//    Esse metodo só esta aqui pq se eu remover ele o codigo da erro :|
+    // Metodo que tem como intuito percorrer a arvore em largura
+    public void percorrerEmLargura(No raiz) throws ArvoreVazia {
+        // Verifica se a Arvore é nula e retorna a Exceção de Arvore Vazia
+        if (raiz == null) {
+            throw new ArvoreVazia();
+        }
+        //Cria uma fila encadeada
+        Queue<No> fila = new LinkedList<>();
+        // Adicionando a raiz na Fila
+        fila.add(raiz);
+
+        while (!fila.isEmpty()) {
+            // Adiciona na variavel atual o nó da frente da fila e depois remove ele dessa fila
+            No atual = fila.poll();
+            // Imprimindo o valor do nó atual
+            System.out.print(atual.dado + " ");
+
+            // Adiciona os filhos do nó atual à fila, se existirem
+            if (atual.getFilhoEsq() != null) {
+                fila.add(atual.getFilhoEsq());
+            }
+
+            if (atual.getFilhoDir() != null) {
+                fila.add(atual.getFilhoDir());
+            }
+        }
+    }
     @Override
     public int compareTo(Object o) {
         return 0;

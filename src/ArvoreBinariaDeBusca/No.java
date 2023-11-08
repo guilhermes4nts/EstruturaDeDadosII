@@ -1,5 +1,6 @@
 package ArvoreBinariaDeBusca;
 
+// Classe No da Arvore Binaria de Busca
 public class No<T> implements INo<T>{
     public int dado;
     public No<T> pai;

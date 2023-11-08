@@ -8,6 +8,9 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.*;
 
@@ -315,4 +318,124 @@ public class TesteArvoreDeBusca<T> {
 
     }
 
+    // Teste do Método de percorrer a lista em Pre Ordem
+    @Test
+    public void testPreOrdem() throws Exception {
+        // Inserindo os valores na Arvore
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
+
+        No raiz = new No(10);
+        arvore.inserir(raiz);
+        arvore.inserir(new No(8));
+        arvore.inserir(new No(9));
+        arvore.inserir(new No(6));
+        arvore.inserir(new No(7));
+        arvore.inserir(new No(20));
+        arvore.inserir(new No(15));
+        arvore.inserir(new No(16));
+        arvore.inserir(new No(12));
+        arvore.inserir(new No(13));
+
+        // Redirecionar a saída para uma variável para verificar a saída
+        ByteArrayOutputStream saidaAtual = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(saidaAtual));
+
+        // Chamar o método percorrerEmLargura
+        arvore.preOrdem(raiz);
+
+        // Verificar a saída esperada
+        String saidaEsperada = "10 8 6 7 9 20 15 12 13 16 ";
+        assertEquals(saidaEsperada, saidaAtual.toString());
+    }
+
+    // Teste do Método  de percorrer a lista em Ordem Simétrica
+    @Test
+    public void testInOrdem() throws Exception {
+        // Inserindo os valores na Arvore
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
+
+        No raiz = new No(10);
+        arvore.inserir(raiz);
+        arvore.inserir(new No(8));
+        arvore.inserir(new No(9));
+        arvore.inserir(new No(6));
+        arvore.inserir(new No(7));
+        arvore.inserir(new No(20));
+        arvore.inserir(new No(15));
+        arvore.inserir(new No(16));
+        arvore.inserir(new No(12));
+        arvore.inserir(new No(13));
+
+        // Redirecionar a saída para uma variável para verificar a saída
+        ByteArrayOutputStream saidaAtual = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(saidaAtual));
+
+        // Chamar o método percorrerEmLargura
+        arvore.inOrdem(raiz);
+
+        // Verificar a saída esperada
+        String saidaEsperada = "6 7 8 9 10 12 13 15 16 20 ";
+        assertEquals(saidaEsperada, saidaAtual.toString());
+    }
+
+    // Teste do Método de percorrer a lista em Pos Ordem
+    @Test
+    public void testPosOrdem() throws Exception {
+        // Inserindo os valores na Arvore
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
+
+        No raiz = new No(10);
+        arvore.inserir(raiz);
+        arvore.inserir(new No(8));
+        arvore.inserir(new No(9));
+        arvore.inserir(new No(6));
+        arvore.inserir(new No(7));
+        arvore.inserir(new No(20));
+        arvore.inserir(new No(15));
+        arvore.inserir(new No(16));
+        arvore.inserir(new No(12));
+        arvore.inserir(new No(13));
+
+        // Redirecionar a saída para uma variável para verificar a saída
+        ByteArrayOutputStream saidaAtual = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(saidaAtual));
+
+        // Chamar o método percorrerEmLargura
+        arvore.posOrdem(raiz);
+
+        // Verificar a saída esperada
+        String saidaEsperada = "7 6 9 8 13 12 16 15 20 10 ";
+        assertEquals(saidaEsperada, saidaAtual.toString());
+    }
+
+    //Teste do método Percorrer em largura
+    @Test
+    public void testPercorrerEmLargura() throws Exception{
+
+        // Inserindo os valores na Arvore
+        ArvoreBinariaBusca arvore = new ArvoreBinariaBusca();
+
+        No raiz = new No(10);
+        arvore.inserir(raiz);
+        arvore.inserir(new No(8));
+        arvore.inserir(new No(9));
+        arvore.inserir(new No(6));
+        arvore.inserir(new No(7));
+        arvore.inserir(new No(20));
+        arvore.inserir(new No(15));
+        arvore.inserir(new No(16));
+        arvore.inserir(new No(12));
+        arvore.inserir(new No(13));
+
+        // Redirecionar a saída para uma variável para verificar a saída
+        ByteArrayOutputStream saida = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(saida));
+
+        // Chamar o método percorrerEmLargura
+        arvore.percorrerEmLargura(raiz);
+
+        // Verificar a saída esperada
+        String saidaEsperada = "10 8 20 6 9 15 7 12 16 13 ";
+        assertEquals(saidaEsperada, saida.toString());
+    }
 }

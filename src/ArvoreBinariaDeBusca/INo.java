@@ -1,5 +1,6 @@
 package ArvoreBinariaDeBusca;
 
+//Interface do No da Arvore Binaria de Busca
 public interface INo<T> extends Comparable<INo>{
 
   void setDado(int dado);
